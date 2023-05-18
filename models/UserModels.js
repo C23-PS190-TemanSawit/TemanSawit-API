@@ -5,13 +5,17 @@ const { DataTypes } = Sequelize;
 const Users = db.define(
   'users',
   {
+    userId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     name: {
       type: DataTypes.STRING,
       unique: true,
     },
     email: {
       type: DataTypes.STRING,
-      unique: true,
     },
     password: {
       type: DataTypes.STRING,
@@ -19,7 +23,10 @@ const Users = db.define(
     refresh_token: {
       type: DataTypes.TEXT,
     },
-
+    googleId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     freezeTableName: true,

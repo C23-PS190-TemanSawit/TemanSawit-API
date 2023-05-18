@@ -12,8 +12,8 @@ export const Login = async (req, res) => {
     });
     const match = await bycrypt.compare(req.body.password, user[0].password);
     if (!match) return res.status(400).json({ msg: 'Password salah' });
-    const userId = user[0].id;
-    const name = user[0].name;
+    const userId = user[0].userId;
+    const name = user[0].username;
     const email = user[0].email;
     const acccessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '20s',
@@ -25,7 +25,7 @@ export const Login = async (req, res) => {
       { refresh_token: refreshToken },
       {
         where: {
-          id: userId,
+          userId: userId,
         },
       }
     );
@@ -49,12 +49,12 @@ export const Logout = async (req, res) => {
     },
   });
   if (!user[0]) return res.sendStatus(204);
-  const userId = user[0].id;
+  const userId = user[0].userId;
   await Users.update(
     { refreshToken: null },
     {
       where: {
-        id: userId,
+        userId: userId,
       },
     }
   );

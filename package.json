@@ -1,14 +1,32 @@
 {
   "name": "authapi-temansawit",
   "version": "1.0.0",
-  "description": "",
+  "description": "This API use for register, login, and logout authentication/authorization",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TemanSawit/authAPI.git"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TemanSawit/authAPI/issues"
+  },
+  "homepage": "https://github.com/TemanSawit/authAPI#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mysql2": "^3.3.1",
+    "passport-google-oauth2": "^0.2.0",
+    "sequelize": "^6.31.1"
+  }
 }
