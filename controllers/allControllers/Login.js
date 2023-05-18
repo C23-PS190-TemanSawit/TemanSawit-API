@@ -1,11 +1,13 @@
-import Users from '../models/UserModels.js';
+import model from '../../models/index.js';
 import bycrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+const controller = {};
+
 // Login Functions
-export const Login = async (req, res) => {
+controller.Login = async (req, res) => {
   try {
-    const user = await Users.findAll({
+    const user = await model.Users.findAll({
       where: {
         name: req.body.name,
       },
@@ -40,10 +42,10 @@ export const Login = async (req, res) => {
 };
 
 // Logout function
-export const Logout = async (req, res) => {
+controller.Logout = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) return res.sendStatus(204);
-  const user = await Users.findAll({
+  const user = await model.Users.findAll({
     where: {
       refresh_token: refreshToken,
     },
@@ -61,3 +63,5 @@ export const Logout = async (req, res) => {
   res.clearCookie('refreshToken');
   return res.sendStatus(200).json({ msg: 'Logout berhasil' });
 };
+
+export default controller;

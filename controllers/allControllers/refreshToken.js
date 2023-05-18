@@ -1,11 +1,12 @@
-import Users from '../models/UserModels.js';
+import model from '../../models/index.js';
 import jwt from 'jsonwebtoken';
+const controller = {};
 
-export const refreshToken = async (req, res) => {
+controller.refreshToken = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken;
     if (!refreshToken) return res.sendStatus(401);
-    const user = await Users.findAll({
+    const user = await model.Users.findAll({
       where: {
         refresh_token: refreshToken,
       },
@@ -25,3 +26,5 @@ export const refreshToken = async (req, res) => {
     console.log(error);
   }
 };
+
+export default controller;
