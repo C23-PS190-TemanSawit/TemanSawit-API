@@ -1,11 +1,13 @@
-import access from './allControllers/Login.js';
-import register from './allControllers/Register.js';
-import user from './allControllers/Users.js';
-import token from './allControllers/refreshToken.js';
+import access from './allControllers/LoginControllers.js';
+import register from './allControllers/RegisterControllers.js';
+import user from './allControllers/UsersControllers.js';
+import token from './allControllers/refreshTokenControllers.js';
+import income from './allControllers/IncomeControllers.js';
 const controller = {};
 
 controller.access = access;
 controller.reg = register;
 controller.user = user;
 controller.token = token;
+controller.income = income;
 export default controller;
