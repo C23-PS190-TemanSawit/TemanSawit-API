@@ -18,7 +18,7 @@ controller.Register = async (req, res) => {
     if (existingnameUser) {
       return res.status(400).json({ msg: 'Username sudah terdaftar' });
     }
-    await Users.create({
+    await model.Users.create({
       username: username,
       email: email,
       password: hashPassword,

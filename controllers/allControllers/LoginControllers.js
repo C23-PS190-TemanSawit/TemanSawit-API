@@ -1,7 +1,6 @@
 import model from '../../models/index.js';
 import bycrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
 const controller = {};
 
 // Login Functions
@@ -9,7 +8,7 @@ controller.Login = async (req, res) => {
   try {
     const user = await model.Users.findAll({
       where: {
-        name: req.body.name,
+        username: req.body.username,
       },
     });
     const match = await bycrypt.compare(req.body.password, user[0].password);
@@ -23,7 +22,7 @@ controller.Login = async (req, res) => {
     const refreshToken = jwt.sign({ userId, name, email }, process.env.REFRESH_TOKEN_SECRET, {
       expiresIn: '1d',
     });
-    await Users.update(
+    await model.Users.update(
       { refresh_token: refreshToken },
       {
         where: {
