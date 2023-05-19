@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from '../../config/database.js';
 
-
 const Users = db.define(
   'users',
   {
@@ -10,12 +9,12 @@ const Users = db.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING(10),
       unique: true,
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
     },
     password: {
       type: DataTypes.STRING,
@@ -24,7 +23,7 @@ const Users = db.define(
       type: DataTypes.TEXT,
     },
     googleId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: true,
     },
   },
