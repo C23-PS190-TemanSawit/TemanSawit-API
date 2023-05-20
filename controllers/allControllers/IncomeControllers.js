@@ -2,7 +2,7 @@ import model from "../../models/index.js";
 const controller = {};
 
 //Create a new incomes transaction
-conntroller.postIncome = async (req, res) => {
+controller.postIncome = async (req, res) => {
     const { userId, transaction_time, price, total_weight, description } = req.body;
     try {
         await model.Incomes.create({
