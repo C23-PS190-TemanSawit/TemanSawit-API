@@ -12,9 +12,9 @@ router.post(`${route}/users`, controller.reg.Register);
 router.post(`${route}/login`, controller.access.Login);
 router.delete(`${route}/logout`, controller.access.Logout);
 // Income routes
-router.post(`${route}/income`, controller.income.postIncome);
-router.get(`${route}/income`, controller.income.getUserIncome);
-// router.get(`${route}/income/sort`, controller.income.sortIncomeByTime);
-// router.get(`${route}/income/:incomeId`, controller.income.getAllIncomeByID);
+router.post(`${route}/income`, verifyToken, controller.income.postIncome);
+router.get(`${route}/income`, verifyToken, controller.income.getUserIncome);
+router.get(`${route}/income/sort`, verifyToken, controller.income.sortIncomeByTime);
+router.get(`${route}/income/:incomeId`, verifyToken, controller.income.getAllIncomeByID);
 
 export default router;
