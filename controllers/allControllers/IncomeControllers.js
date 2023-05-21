@@ -42,7 +42,7 @@ controller.getUserIncome = async (req, res) => {
 };
 
 // Get Income by ID
-controller.getAllIncomeByID = async (req, res) => {
+controller.getIncomeByID = async (req, res) => {
   try {
     const { incomeId } = req.params;
     const transaction = await model.Incomes.findAll({
