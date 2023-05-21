@@ -22,10 +22,10 @@ const Users = db.define(
     refresh_token: {
       type: DataTypes.TEXT,
     },
-    googleId: {
-      type: DataTypes.STRING(100),
-      allowNull: true,
-    },
+    // googleId: {
+    //   type: DataTypes.STRING(100),
+    //   allowNull: true,
+    // },
   },
   {
     freezeTableName: true,
