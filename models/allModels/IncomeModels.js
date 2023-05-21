@@ -29,11 +29,7 @@ const Incomes = db.define(
 );
 
 // Create one to many relationships between users and incomes
-Users.hasOne(Incomes, { foreignKey: 'userId' });
+Users.hasMany(Incomes, { foreignKey: 'userId' });
 Incomes.belongsTo(Users, { foreignKey: 'userId' });
-
-
-Incomes.hasMany(Users, { foreignKey: 'userId', as: 'users'});
-Users.belongsTo(Incomes, { foreignKey: 'userId', as: 'incomes'});
 
 export default Incomes;
