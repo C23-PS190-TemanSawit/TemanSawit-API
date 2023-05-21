@@ -17,7 +17,7 @@ controller.Login = async (req, res) => {
     const name = user[0].username;
     const email = user[0].email;
     const acccessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '2m',
+      expiresIn: '20s',
     });
     const refreshToken = jwt.sign({ userId, name, email }, process.env.REFRESH_TOKEN_SECRET, {
       expiresIn: '1d',
@@ -34,7 +34,7 @@ controller.Login = async (req, res) => {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.json({ acccessToken: acccessToken, userId: userId, name: name, email: email});
+    res.json({ acccessToken: acccessToken, userId: userId, name: name, email: email });
   } catch (error) {
     res.status(404).json({ msg: 'Username tidak ditemukan' });
   }
