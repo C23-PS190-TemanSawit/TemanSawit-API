@@ -13,6 +13,9 @@ Clone the project
 Install dependencies
 
 ```bash
+  npm install nodemon
+```
+```bash
   npm install express
 ```
 ```bash
