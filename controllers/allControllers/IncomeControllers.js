@@ -5,7 +5,8 @@ const controller = {};
 controller.postIncome = async (req, res) => {
   // If already login, create a new transaction Income object
   try {
-    const { transaction_time, price, total_weight, description, userId } = req.body;
+    const { transaction_time, price, total_weight, description } = req.body;
+    const userId = req.userId;
     await model.Incomes.create({
       transaction_time: transaction_time,
       price: price,
@@ -22,8 +23,16 @@ controller.postIncome = async (req, res) => {
 //Get all transaction
 controller.getUserIncome = async (req, res) => {
   try {
+    const userId = req.userId;
     const income = await model.Incomes.findAll({
-      include: [{ model: model.Users }],
+      include: [
+        {
+          model: model.Users,
+          where: {
+            userId: userId,
+          },
+        },
+      ],
     });
     res.status(200).json(income);
   } catch (error) {
@@ -33,33 +42,37 @@ controller.getUserIncome = async (req, res) => {
 };
 
 // Get Income by ID
-// controller.getAllIncomeByID = async (req, res) => {
-//   try {
-//     const { incomeId } = req.params;
-//     const transaction = await model.Incomes.findAll({
-//       where: { incomeId },
-//       include: [
-//         {
-//           model: model.Users,
-//         },
-//       ],
-//     });
-//     res.status(200).json(transaction);
-//   } catch (error) {
-//     res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
-//   }
-// };
+controller.getAllIncomeByID = async (req, res) => {
+  try {
+    const { incomeId } = req.params;
+    const transaction = await model.Incomes.findAll({
+      where: { incomeId },
+      include: [
+        {
+          model: model.Users,
+        },
+      ],
+    });
+    res.status(200).json(transaction);
+  } catch (error) {
+    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+  }
+};
 
 // Sort Incomes by creation time
-// controller.sortIncomeByTime = async (req, res) => {
-//   try {
-//     const transaction = await model.Incomes.findOne({
-//       order: [['createdAt', 'DESC']],
-//     });
-//     res.status(200).json(transaction);
-//   } catch (error) {
-//     res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
-//   }
-// };
+controller.sortIncomeByTime = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const transaction = await model.Incomes.findOne({
+      where: {
+        userId: userId,
+      },
+      order: [['createdAt', 'DESC']],
+    });
+    res.status(200).json(transaction);
+  } catch (error) {
+    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+  }
+};
 
 export default controller;
