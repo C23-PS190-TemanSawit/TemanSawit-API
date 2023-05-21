@@ -30,3 +30,41 @@ Start the server (before that activate XAMPP in your local)
 ```bash
   npm start
 ```
+## Testing API in POSTMAN
+
+To run tests, run the following command
+
+* Authentication and Authorization
+Method Post for registration
+```bash
+POST http://localhost:8080/api/users
+```
+On body request, copy this code for example :
+```bash
+  {
+    "username" : "JohnDoe",
+    "email": "johndoe@example.com",
+    "password": "pass1234",
+    "confPassword": "pass1234"
+  }
+```
+
+Method POST for login
+```bash
+POST http://localhost:8080/api/login
+```
+On body request, copy this code for example :
+```bash
+  {
+    "username" : "JohnDoe",
+    "password": "pass1234"
+  }
+```
+Method GET for verify
+```bash
+GET http://localhost:8080/api/users
+```
+Method GET for refreshtoken
+```bash
+GET http://localhost:8080/api/token
+```
