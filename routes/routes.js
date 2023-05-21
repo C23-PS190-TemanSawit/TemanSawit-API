@@ -15,6 +15,6 @@ router.delete(`${route}/logout`, controller.access.Logout);
 router.post(`${route}/income`, verifyToken, controller.income.postIncome);
 router.get(`${route}/income`, verifyToken, controller.income.getUserIncome);
 router.get(`${route}/income/sort`, verifyToken, controller.income.sortIncomeByTime);
-router.get(`${route}/income/:incomeId`, verifyToken, controller.income.getAllIncomeByID);
+router.get(`${route}/income/:incomeId`, verifyToken, controller.income.getIncomeByID);
 
 export default router;
