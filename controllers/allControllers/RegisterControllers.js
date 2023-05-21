@@ -1,5 +1,5 @@
 import model from '../../models/index.js';
-import bycrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 const controller = {};
 
 // Register Functions
