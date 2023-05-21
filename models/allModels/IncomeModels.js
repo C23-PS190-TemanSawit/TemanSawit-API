@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from '../../config/database.js';
-import model from '../index.js';
+import Users from './UserModels.js';
 
 const Incomes = db.define(
   'incomes',
@@ -27,6 +27,11 @@ const Incomes = db.define(
     freezeTableName: true,
   }
 );
+
+// Create one to many relationships between users and incomes
+Users.hasOne(Incomes, { foreignKey: 'userId' });
+Incomes.belongsTo(Users, { foreignKey: 'userId' });
+
 
 Incomes.hasMany(Users, { foreignKey: 'userId', as: 'users'});
 Users.belongsTo(Incomes, { foreignKey: 'userId', as: 'incomes'});

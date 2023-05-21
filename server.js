@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import router from './routes/routes.js';
 import cookieParser from 'cookie-parser';
+// import Relations from './models/RelationModels.js';
 import Incomes from './models/allModels/IncomeModels.js';
 import Users from './models/allModels/UserModels.js';
 //import Relations from './models/RelationModels.js';

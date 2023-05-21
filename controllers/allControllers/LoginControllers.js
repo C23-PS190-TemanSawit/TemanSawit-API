@@ -51,7 +51,7 @@ controller.Logout = async (req, res) => {
   });
   if (!user[0]) return res.sendStatus(204);
   const userId = user[0].userId;
-  await Users.update(
+  await model.Users.update(
     { refreshToken: null },
     {
       where: {
