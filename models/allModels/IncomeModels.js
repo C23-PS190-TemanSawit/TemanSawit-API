@@ -22,12 +22,13 @@ const Incomes = db.define(
     description: {
       type: DataTypes.TEXT,
     },
-    userId: {
-      type: DataTypes.STRING,
-    },
   },
   {
     freezeTableName: true,
   }
 );
+
+Incomes.hasMany(Users, { foreignKey: 'userId', as: 'users'});
+Users.belongsTo(Incomes, { foreignKey: 'userId', as: 'incomes'});
+
 export default Incomes;

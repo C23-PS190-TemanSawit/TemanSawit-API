@@ -1,0 +1,24 @@
+POST http://localhost:8080/users 
+Content-Type: application/json
+
+{
+  "username": "JohnDoe",
+  "email": "johndoe@example.com",
+  "password": "password123",
+  "confPassword": "password123"
+}
+
+###
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "JohnDoe",
+  "password": "password123"
+}
+
+###
+GET http://localhost:8080/users
+Authorization: Bearer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJKb2huRG9lIiwiZW1haWwiOiJqb2huZG9lQGV4YW1wbGUuY29tIiwiaWF0IjoxNjg0NTg2NTU2LCJleHAiOjE2ODQ1ODY1NzZ9.7P8Z8TOyfMS0mXxj-WbY8FdjijjiQ-9_1CCFnEAJUbw
+

@@ -9,4 +9,6 @@ router.post('/login', controller.access.Login);
 router.get('/token', controller.token.refreshToken);
 router.delete('/logout', controller.access.Logout);
 
+router.get('/income', controller.income.Income);
+
 export default router;

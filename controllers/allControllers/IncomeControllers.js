@@ -22,7 +22,7 @@ controller.postIncome = async (req, res) => {
 controller.getAllIncome = async (req, res) => {
     try {
       const income = await model.Incomes.findAll({
-        include: [{ model: model.Users }],
+        include: [{ model: model.Users, as: 'users'}],
        });
        res.json(income);
     }  catch (error) {
