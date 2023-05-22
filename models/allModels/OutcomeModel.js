@@ -26,7 +26,7 @@ const Outcomes = db.define(
   );
 
 // Create one to many relationships between users and outcomes
-Users.hasOne(Outcomes, { foreignKey: 'userId' });
+Users.hasMany(Outcomes, { foreignKey: 'userId' });
 Outcomes.belongsTo(Users, { foreignKey: 'userId' });
 
 export default Outcomes;

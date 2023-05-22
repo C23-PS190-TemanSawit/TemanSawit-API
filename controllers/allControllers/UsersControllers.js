@@ -14,4 +14,6 @@ controller.getUsers = async (req, res) => {
   }
 };
 
+// Update users password
+
 export default controller;

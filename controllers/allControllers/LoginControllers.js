@@ -34,7 +34,7 @@ controller.Login = async (req, res) => {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.json({ acccessToken: acccessToken, userId: userId, name: name, email: email });
+    res.json({ acccessToken: acccessToken, refreshToken: refreshToken, userId: userId, name: name, email: email });
   } catch (error) {
     res.status(404).json({ msg: 'Username tidak ditemukan' });
   }
