@@ -16,27 +16,35 @@ controller.getUsers = async (req, res) => {
 
 // Update users password
 controller.updatePassword = async (req, res) => {
+  const userId = req.userId;
+  let { password, newPassword, confPassword } = req.body;
   try {
-    const { userId, currentPassword, newPassword } = req.body;
+    const user = await model.Users.findOne({
+      id: userId,
+    });
+    // Cek current password is match
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return res.status(400).json({ msg: 'Password yang anda masukkan salah' });
 
-    const user = await model.Users.findByPk(userId);
-    if (!user) return res.status(404).json({ msg: 'Username tidak ditemukan' });
-
-    const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
-    if (!isPasswordValid)
-      return res.status(401).json({ msg: 'Password saat ini tidak valid, silakan coba lagi' });
-
+    // Cek updated password match with confirm password
+    if (newPassword !== confPassword) return res.status(400).json({ msg: 'Password tidak cocok, silahkan masukkan kembali password anda' });
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(newPassword, salt);
 
-    user.password = hashPassword;
+    await model.Users.update(
+      { password: hashPassword },
+      {
+        where: {
+          userId: userId,
+        },
+      }
+    );
     await user.save();
-
-    res.json({ msg: 'Password berhasil diperbarui' });
+    return res.status(200).json({ msg: 'Update password berhasil' });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ msg: 'Terjadi kesalahan saat memperbarui password' });
-  }
+    res.status(500).json({ msg: 'Terjadi kesalahan saat update password' });
+  }
 };
 
 export default controller;
