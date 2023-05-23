@@ -12,7 +12,7 @@ controller.Login = async (req, res) => {
       },
     });
     const match = await bycrypt.compare(req.body.password, user[0].password);
-    if (!match) return res.status(400).json({ msg: 'Password salah' });
+    if (!match) return res.status(400).json({ msg: 'Password yang anda masukkan salah' });
     const userId = user[0].userId;
     const name = user[0].username;
     const email = user[0].email;

@@ -20,7 +20,7 @@ controller.postIncome = async (req, res) => {
   }
 };
 
-//Get all transaction
+//Get all user transaction
 controller.getUserIncome = async (req, res) => {
   try {
     const userId = req.userId;
@@ -41,7 +41,7 @@ controller.getUserIncome = async (req, res) => {
   }
 };
 
-// Get Income by ID
+// Get user income by ID
 controller.getIncomeByID = async (req, res) => {
   try {
     const { incomeId } = req.params;
