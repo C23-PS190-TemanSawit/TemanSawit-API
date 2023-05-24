@@ -75,4 +75,41 @@ controller.sortIncomeByTime = async (req, res) => {
   }
 };
 
+// Update old income with new income
+controller.updateIncome = async (req, res) => {
+  try {
+    const { oldIncomeId } = req.params;
+    const { transaction_time, price, total_weight, description } = req.body;
+    const userId = req.userId;
+
+    // Check if the old income exists and belongs to the user
+    const existingIncome = await model.Incomes.findOne({
+      where: { incomeId: oldIncomeId, userId: userId },
+    });
+
+    if (!existingIncome) {
+      return res.status(404).json({ msg: "Transaksi tidak ditemukan" });
+    }
+
+    // Create a new income object with updated values
+    const newIncome = await model.Incomes.create({
+      transaction_time: transaction_time,
+      price: price,
+      total_weight: total_weight,
+      description: description,
+      userId: userId,
+    });
+
+    // Delete the old income
+    await model.Incomes.destroy({
+      where: { incomeId: oldIncomeId },
+    });
+
+    res.status(200).json({ msg: "Transaksi berhasil diperbarui", newIncome: newIncome });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Gagal memperbarui transaksi" });
+  }
+};
+
 export default controller;
