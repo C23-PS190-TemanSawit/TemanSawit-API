@@ -91,21 +91,25 @@ controller.updateIncome = async (req, res) => {
       return res.status(404).json({ msg: "Transaksi tidak ditemukan" });
     }
 
-    // Create a new income object with updated values
-    const newIncome = await model.Incomes.create({
-      transaction_time: transaction_time,
-      price: price,
-      total_weight: total_weight,
-      description: description,
-      userId: userId,
-    });
-
-    // Delete the old income
-    await model.Incomes.destroy({
+    // Update the existing income with new values
+    await model.Incomes.update(
+      {
+        transaction_time: transaction_time,
+        price: price,
+        total_weight: total_weight,
+        description: description,
+      },
+      {
+        where: { incomeId: oldIncomeId },
+      }
+    );
+    
+    // Fetch the updated income
+    const replaceIncome = await model.Incomes.findOne({
       where: { incomeId: oldIncomeId },
     });
 
-    res.status(200).json({ msg: "Transaksi berhasil diperbarui", newIncome: newIncome });
+    res.status(200).json({ msg: "Transaksi berhasil diperbarui", replaceIncome: replaceIncome });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Gagal memperbarui transaksi" });
