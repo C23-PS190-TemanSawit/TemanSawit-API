@@ -17,11 +17,14 @@ router.post(`${route}/income`, verifyToken, controller.income.postIncome);
 router.get(`${route}/income`, verifyToken, controller.income.getUserIncome);
 router.get(`${route}/income/sort`, verifyToken, controller.income.sortIncomeByTime);
 router.get(`${route}/income/:incomeId`, verifyToken, controller.income.getIncomeByID);
-router.put(`${route}/income/update/:oldIncomeId`, verifyToken, controller.income.updateIncome);
+router.put(`${route}/income/update/:incomeId`, verifyToken, controller.income.updateIncome);
 // Outcome routes
 router.post(`${route}/outcome`, verifyToken, controller.outcome.postOutcome);
 router.get(`${route}/outcome`, verifyToken, controller.outcome.getUserOutcome);
 router.get(`${route}/outcome/sort`, verifyToken, controller.outcome.sortOutcomeByTime);
 router.get(`${route}/outcome/:outcomeId`, verifyToken, controller.outcome.getOutcomeByID);
+// Bucket routes
+router.post(`${route}/upload`, verifyToken, controller.file.uploadFile);
+router.get(`${route}/files`, verifyToken, controller.file.getListFiles);
 
 export default router;
