@@ -16,7 +16,7 @@ controller.postIncome = async (req, res) => {
     });
     res.status(200).json({ msg: 'Berhasil menambah transaksi' });
   } catch (error) {
-    res.status(500).json({ msg: 'transaksi tidak ditemukan' });
+    res.status(500).json({ msg: 'Gagal menambah transaksi' });
   }
 };
 
@@ -78,19 +78,26 @@ controller.sortIncomeByTime = async (req, res) => {
 // Update old income with new income
 controller.updateIncome = async (req, res) => {
   try {
-    const { oldIncomeId } = req.params;
+    const { incomeId } = req.params;
     const { transaction_time, price, total_weight, description } = req.body;
     const userId = req.userId;
-
     // Check if the old income exists and belongs to the user
     const existingIncome = await model.Incomes.findOne({
-      where: { incomeId: oldIncomeId, userId: userId },
+      where: { incomeId: incomeId, userId: userId },
     });
-
     if (!existingIncome) {
-      return res.status(404).json({ msg: "Transaksi tidak ditemukan" });
+      return res.status(404).json({ msg: 'Transaksi tidak ditemukan' });
     }
-
+    // Cek if one of the fields is empty
+    if (!transaction_time) {
+      return res.status(404).json({ msg: 'Mohon tambahkan tanggal transaksi' });
+    } else if (!price) {
+      return res.status(404).json({ msg: 'Mohon tambahkan harga transaksi' });
+    } else if (!total_weight) {
+      return res.status(404).json({ msg: 'Mohon tambahkan berat transaksi' });
+    } else if (!description) {
+      return res.status(404).json({ msg: 'Mohon tambahkan deskripsi transaksi' });
+    }
     // Update the existing income with new values
     await model.Incomes.update(
       {
@@ -100,19 +107,14 @@ controller.updateIncome = async (req, res) => {
         description: description,
       },
       {
-        where: { incomeId: oldIncomeId },
+        where: { incomeId: incomeId },
       }
     );
-    
-    // Fetch the updated income
-    const replaceIncome = await model.Incomes.findOne({
-      where: { incomeId: oldIncomeId },
-    });
 
-    res.status(200).json({ msg: "Transaksi berhasil diperbarui", replaceIncome: replaceIncome });
+    res.status(200).json({ msg: 'Transaksi berhasil diperbarui' });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: "Gagal memperbarui transaksi" });
+    res.status(500).json({ msg: 'Gagal memperbarui transaksi' });
   }
 };
 
