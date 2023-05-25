@@ -4,7 +4,8 @@ const controller = {};
 
 controller.refreshToken = async (req, res) => {
   try {
-    const refreshToken = req.body.refreshToken;
+    const refreshToken = req.cookies.refreshToken;
+    console.log(refreshToken);
     if (!refreshToken) return res.sendStatus(401);
     const user = await model.Users.findAll({
       where: {
@@ -22,6 +23,7 @@ controller.refreshToken = async (req, res) => {
       });
       res.json({ accessToken });
     });
+    res.json(refreshToken);
   } catch (error) {
     console.log(error);
   }
