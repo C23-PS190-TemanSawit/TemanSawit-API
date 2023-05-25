@@ -22,6 +22,9 @@ const Users = db.define(
     refresh_token: {
       type: DataTypes.TEXT,
     },
+    image: {
+      type: DataTypes.STRING,
+    },
     // googleId: {
     //   type: DataTypes.STRING(100),
     //   allowNull: true,
