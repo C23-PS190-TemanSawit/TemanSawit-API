@@ -37,7 +37,7 @@ controller.getUserIncome = async (req, res) => {
     res.status(200).json(income);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+    res.status(500).json({ msg: 'Gagal mendapatkan transaksi' });
   }
 };
 
@@ -55,7 +55,7 @@ controller.getIncomeByID = async (req, res) => {
     });
     res.status(200).json(transaction);
   } catch (error) {
-    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+    res.status(500).json({ msg: 'Gagal mendapatkan transaksi' });
   }
 };
 
@@ -71,7 +71,7 @@ controller.sortIncomeByTime = async (req, res) => {
     });
     res.status(200).json(transaction);
   } catch (error) {
-    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+    res.status(500).json({ msg: 'Gagal mendapatkan transaksi' });
   }
 };
 
