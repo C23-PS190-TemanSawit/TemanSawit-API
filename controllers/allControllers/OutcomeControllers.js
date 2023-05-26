@@ -74,4 +74,44 @@ controller.sortOutcomeByTime = async (req, res) => {
   }
 };
 
+// Update old outcome with new outcome
+controller.updateOutcome = async (req, res) => {
+  try {
+    const { outcomeId } = req.params;
+    const { transaction_time, total_outcome, description } = req.body;
+    const userId = req.userId;
+    // Check if the old outcome exists and belongs to the user
+    const existingOutcome = await model.Outcomes.findOne({
+      where: { outcomeId: outcomeId, userId: userId },
+    });
+    if (!existingOutcome) {
+      return res.status(404).json({ msg: 'Transaksi tidak ditemukan' });
+    }
+    // Cek if one of the fields is empty
+    if (!transaction_time) {
+      return res.status(404).json({ msg: 'Mohon tambahkan tanggal transaksi' });
+    } else if (!total_outcome) {
+      return res.status(404).json({ msg: 'Mohon tambahkan berat transaksi' });
+    } else if (!description) {
+      return res.status(404).json({ msg: 'Mohon tambahkan deskripsi transaksi' });
+    }
+    // Update the existing outcome with new values
+    await model.Outcomes.update(
+      {
+        transaction_time: transaction_time,
+        total_outcome: total_outcome,
+        description: description,
+      },
+      {
+        where: { outcomeId: outcomeId },
+      }
+    );
+
+    res.status(200).json({ msg: 'Transaksi berhasil diperbarui' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: 'Gagal memperbarui transaksi' });
+  }
+};
+
 export default controller;
