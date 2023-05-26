@@ -18,6 +18,7 @@ router.get(`${route}/income`, verifyToken, controller.income.getUserIncome);
 router.get(`${route}/income/sort`, verifyToken, controller.income.sortIncomeByTime);
 router.get(`${route}/income/:incomeId`, verifyToken, controller.income.getIncomeByID);
 router.put(`${route}/income/update/:incomeId`, verifyToken, controller.income.updateIncome);
+router.delete(`${route}/income/:incomeId`, verifyToken, controller.income.deleteIncome);
 // Outcome routes
 router.post(`${route}/outcome`, verifyToken, controller.outcome.postOutcome);
 router.get(`${route}/outcome`, verifyToken, controller.outcome.getUserOutcome);
