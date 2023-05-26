@@ -25,10 +25,10 @@ const Users = db.define(
     image: {
       type: DataTypes.STRING,
     },
-    // googleId: {
-    //   type: DataTypes.STRING(100),
-    //   allowNull: true,
-    // },
+    /*googleId: {
+       type: DataTypes.STRING(100),
+       allowNull: true,
+    },*/
   },
   {
     freezeTableName: true,
