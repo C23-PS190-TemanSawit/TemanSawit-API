@@ -25,6 +25,7 @@ router.get(`${route}/outcome`, verifyToken, controller.outcome.getUserOutcome);
 router.get(`${route}/outcome/sort`, verifyToken, controller.outcome.sortOutcomeByTime);
 router.get(`${route}/outcome/:outcomeId`, verifyToken, controller.outcome.getOutcomeByID);
 router.put(`${route}/outcome/update/:oldOutcomeId`, verifyToken, controller.outcome.updateOutcome);
+router.delete(`${route}/outcome/:outcomeId`, verifyToken, controller.outcome.deleteOutcome);
 // Bucket routes
 router.post(`${route}/upload`, verifyToken, controller.file.uploadFile);
 router.get(`${route}/files`, verifyToken, controller.file.getListFiles);
