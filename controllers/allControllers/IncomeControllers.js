@@ -37,7 +37,7 @@ controller.getUserIncome = async (req, res) => {
     res.status(200).json(income);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+    res.status(500).json({ msg: 'Gagal mendapatkan transaksi' });
   }
 };
 
@@ -55,7 +55,7 @@ controller.getIncomeByID = async (req, res) => {
     });
     res.status(200).json(transaction);
   } catch (error) {
-    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+    res.status(500).json({ msg: 'Gagal mendapatkan transaksi' });
   }
 };
 
@@ -71,7 +71,7 @@ controller.sortIncomeByTime = async (req, res) => {
     });
     res.status(200).json(transaction);
   } catch (error) {
-    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+    res.status(500).json({ msg: 'Gagal mendapatkan transaksi' });
   }
 };
 
@@ -115,6 +115,33 @@ controller.updateIncome = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: 'Gagal memperbarui transaksi' });
+  }
+};
+
+// Delete income by ID
+controller.deleteIncome = async (req, res) => {
+  try {
+    const { incomeId } = req.params;
+    const userId = req.userId;
+    
+    // Check if the income exists and belongs to the user
+    const existingIncome = await model.Incomes.findOne({
+      where: { incomeId: incomeId, userId: userId },
+    });
+    
+    if (!existingIncome) {
+      return res.status(404).json({ msg: 'Transaksi tidak ditemukan' });
+    }
+    
+    // Delete the income
+    await model.Incomes.destroy({
+      where: { incomeId: incomeId },
+    });
+    
+    res.status(200).json({ msg: 'Transaksi berhasil dihapus' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: 'Gagal menghapus transaksi' });
   }
 };
 
