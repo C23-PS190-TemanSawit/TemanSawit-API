@@ -37,7 +37,7 @@ controller.uploadFile = async (req, res) => {
         }
       );
       res.status(200).send({
-        message: 'Uploaded the file successfully: ' + req.file.originalname,
+        message: 'File berhasil diupload ' + req.file.originalname,
         url: publicUrl,
       });
     });
@@ -50,7 +50,7 @@ controller.uploadFile = async (req, res) => {
       });
     }
     res.status(500).send({
-      message: `Could not upload the file: ${req.file.originalname}. ${err}`,
+      message: `Tidak dapat mengupload file: ${req.file.originalname}. ${err}`,
     });
   }
 };
