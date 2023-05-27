@@ -5,12 +5,11 @@ import model from '../../models/index.js';
 
 const controller = {};
 const storage = gcs;
-const bucketName = 'teman-sawit-tes';
+const bucketName = 'testing-bucket-00';
 const bucket = storage.bucket(bucketName);
 
 controller.uploadFile = async (req, res) => {
   const userId = req.userId;
-  let { newImage } = req.body;
   try {
     await model.Users.findOne({
       id: userId,
@@ -29,21 +28,19 @@ controller.uploadFile = async (req, res) => {
     blobStream.on('finish', async (data) => {
       // Create URL for directly file access via HTTP.
       const publicUrl = format(`https://storage.googleapis.com/${bucket.name}/${blob.name}`);
-      newImage = publicUrl
+      await model.Users.update(
+        { image: publicUrl },
+        {
+          where: {
+            userId: userId,
+          },
+        }
+      );
       res.status(200).send({
         message: 'Uploaded the file successfully: ' + req.file.originalname,
         url: publicUrl,
       });
     });
-
-    await model.Users.update(
-      { image: newImage },
-      {
-        where: {
-          userId: userId,
-        },
-      }
-    );
 
     blobStream.end(req.file.buffer);
   } catch (err) {
