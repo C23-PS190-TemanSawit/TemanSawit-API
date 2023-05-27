@@ -52,7 +52,7 @@ controller.Logout = async (req, res) => {
   if (!user[0]) return res.sendStatus(204);
   const userId = user[0].userId;
   await model.Users.update(
-    { refreshToken: null },
+    { refresh_token: null },
     {
       where: {
         userId: userId,
@@ -60,7 +60,7 @@ controller.Logout = async (req, res) => {
     }
   );
   res.clearCookie('refreshToken');
-  return res.sendStatus(200).json({ msg: 'Logout berhasil' });
+  return res.status(200).json({ msg: 'Logout berhasil' });
 };
 
 export default controller;
