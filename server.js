@@ -7,7 +7,6 @@ import 'dotenv/config';
 
 const app = express();
 const port = process.env.PORT;
-const host = process.env.HOST;
 
 try {
   await db.authenticate();
@@ -24,5 +23,5 @@ app.use(express.json());
 app.use(router);
 
 app.listen(port, host, () => {
-  console.log(`Listening on port${port}/${host}`);
+  console.log(`Listening on port${port}`);
 });
