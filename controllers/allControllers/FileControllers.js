@@ -55,23 +55,23 @@ controller.uploadFile = async (req, res) => {
   }
 };
 
-controller.getListFiles = async (req, res) => {
+// Get user profile image from databases
+controller.getUserProfile = async (req, res) => {
   try {
-    const [files] = await bucket.getFiles();
-    let fileInfos = [];
-
-    files.forEach((file) => {
-      fileInfos.push({
-        name: file.name,
-        url: file.metadata.mediaLink,
-      });
+    const userId = req.userId;
+    const profileImage = req.body.image;
+    const img = await model.Users.findOne({
+      image: profileImage,
+      attributes: ['userId', 'username', 'email','image'],
+      where: {
+        userId: userId,
+      },
     });
-    res.status(200).send(fileInfos);
+    res.status(200).json(img);
   } catch (err) {
     console.log(err);
-
-    res.status(500).send({
-      message: 'Unable to read list of files!',
+    res.status(500).json({
+      message: 'File tidak ditemukan',
     });
   }
 };
