@@ -1,13 +1,13 @@
 import express from 'express';
 import db from './config/database.js';
-import dotenv from 'dotenv';
 import cors from 'cors';
 import router from './routes/routes.js';
 import cookieParser from 'cookie-parser';
+import 'dotenv/config';
 
-dotenv.config();
 const app = express();
-const port = 5000;
+const port = process.env.PORT;
+const host = process.env.HOST;
 
 try {
   await db.authenticate();
@@ -23,7 +23,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(router);
 
-app.listen(port, () => {
-  console.log('listening on port ', port);
+app.listen(port, host, () => {
+  console.log(`Listening on port${port}/${host}`);
 });
-
