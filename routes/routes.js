@@ -6,8 +6,6 @@ import get from '../server.js';
 const route = '/api';
 
 const router = express.Router();
-// API test
-router.get('/', get);
 // Auth routes
 router.get(`${route}/users`, verifyToken, controller.user.getUsers);
 router.get(`${route}/token`, controller.token.refreshToken);
