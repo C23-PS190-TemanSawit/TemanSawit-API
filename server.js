@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 
 const app = express();
-const port = process.env.PORT;
+const port = 8080;
 
 try {
   await db.authenticate();
@@ -22,6 +22,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(router);
 
-app.listen(port, host, () => {
-  console.log(`Listening on port${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Listening on port ${port}`);
 });

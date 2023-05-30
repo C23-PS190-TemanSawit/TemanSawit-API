@@ -4,6 +4,7 @@ import verifyToken from '../middleware/verifyToken.js';
 const route = '/api';
 
 const router = express.Router();
+router.get('/', controller.run.run);
 // Auth routes
 router.get(`${route}/users`, verifyToken, controller.user.getUsers);
 router.get(`${route}/token`, controller.token.refreshToken);

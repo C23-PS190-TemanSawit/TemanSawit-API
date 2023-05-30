@@ -5,6 +5,7 @@ import token from './allControllers/refreshTokenControllers.js';
 import income from './allControllers/IncomeControllers.js';
 import outcome from './allControllers/OutcomeControllers.js';
 import file from './allControllers/FileControllers.js';
+import run from './allControllers/ApiRun.js';
 const controller = {};
 
 controller.access = access;
@@ -14,4 +15,5 @@ controller.token = token;
 controller.income = income;
 controller.outcome = outcome;
 controller.file = file;
+controller.run = run;
 export default controller;
