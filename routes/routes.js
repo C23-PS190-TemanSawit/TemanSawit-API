@@ -28,6 +28,6 @@ router.put(`${route}/outcome/update/:outcomeId`, verifyToken, controller.outcome
 router.delete(`${route}/outcome/:outcomeId`, verifyToken, controller.outcome.deleteOutcome);
 // Bucket routes
 router.post(`${route}/upload`, verifyToken, controller.file.uploadFile);
-router.get(`${route}/files`, verifyToken, controller.file.getFilesFromDB);
+router.get(`${route}/profile`, verifyToken, controller.file.getUserProfile);
 
 export default router;
