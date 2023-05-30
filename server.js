@@ -23,8 +23,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(router);
 
-const get = app.listen(port, () => {
+app.listen(port, () => {
   console.log('listening on port ', port);
 });
 
-export default get;
