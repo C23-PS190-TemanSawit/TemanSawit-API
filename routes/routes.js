@@ -11,6 +11,7 @@ router.get(`${route}/token`, controller.token.refreshToken);
 router.post(`${route}/users`, controller.reg.Register);
 router.post(`${route}/login`, controller.access.Login);
 router.put(`${route}/update`, verifyToken, controller.user.updatePassword);
+router.put(`${route}/profile`, verifyToken, controller.user.updateProfile);
 router.delete(`${route}/logout`, controller.access.Logout);
 // Income routes
 router.post(`${route}/income`, verifyToken, controller.income.postIncome);
