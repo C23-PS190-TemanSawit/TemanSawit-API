@@ -48,4 +48,39 @@ controller.updatePassword = async (req, res) => {
   }
 };
 
+// Update users profile
+controller.updateProfile = async (req, res) => {
+  const userId = req.userId;
+  const { fullName, phoneNumber, birthDate, gender } = req.body;
+  try {
+    const user = await model.Users.findOne({
+      where: { userId: userId },
+    });
+
+    // Check if the user is authorized to update their profile
+    if (user.userId !== userId) {
+      return res.status(401).json({ msg: 'Unauthorized' });
+    }
+
+    // Check if one of the fields is empty
+    if (fullName === undefined || phoneNumber === undefined || birthDate === undefined || gender === undefined) {
+      return res.status(400).json({ msg: 'Harap lengkapi semua data' });
+    }
+
+    await model.Users.update(
+      { fullName, phoneNumber, birthDate, gender },
+      {
+        where: {
+          userId: userId,
+        },
+      }
+    );
+    await user.save();
+    return res.status(200).json({ msg: 'Update profile berhasil' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: 'Terjadi kesalahan saat update profile' });
+  }
+};
+
 export default controller;
