@@ -25,6 +25,18 @@ const Users = db.define(
     image: {
       type: DataTypes.STRING,
     },
+    fullName: {
+      type: DataTypes.STRING(100),
+    },
+    phoneNumber: {
+      type: DataTypes.STRING(20),
+    },
+    birthDate: {
+      type: DataTypes.DATEONLY,
+    },
+    gender: {
+      type: DataTypes.STRING(10),
+    },
     /*googleId: {
        type: DataTypes.STRING(100),
        allowNull: true,
