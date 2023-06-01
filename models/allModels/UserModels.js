@@ -16,6 +16,9 @@ const Users = db.define(
     email: {
       type: DataTypes.STRING(50),
     },
+    fullName: {
+      type: DataTypes.STRING(100),
+    },
     password: {
       type: DataTypes.STRING,
     },
@@ -24,9 +27,6 @@ const Users = db.define(
     },
     image: {
       type: DataTypes.STRING,
-    },
-    fullName: {
-      type: DataTypes.STRING(100),
     },
     phoneNumber: {
       type: DataTypes.STRING(20),
