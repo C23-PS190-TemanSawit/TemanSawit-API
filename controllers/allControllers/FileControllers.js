@@ -62,7 +62,7 @@ controller.getUserProfile = async (req, res) => {
     const profileImage = req.body.image;
     const img = await model.Users.findOne({
       image: profileImage,
-      attributes: ['userId', 'username', 'email','image'],
+      attributes: ['userId', 'username', 'fullName', 'email', 'image', 'phoneNumber', 'birthDate', 'gender'],
       where: {
         userId: userId,
       },
