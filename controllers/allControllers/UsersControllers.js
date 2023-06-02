@@ -77,8 +77,6 @@ controller.updateProfile = async (req, res) => {
   }
 };
 
-export default controller;
-
 controller.forgotPassword = async (req, res) => {
   const { username, newPassword, confPassword } = req.body;
   const user = await model.Users.findOne({
@@ -129,3 +127,5 @@ controller.getUserProfile = async (req, res) => {
     });
   }
 };
+
+export default controller;
