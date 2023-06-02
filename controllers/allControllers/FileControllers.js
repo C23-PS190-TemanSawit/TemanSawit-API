@@ -55,25 +55,4 @@ controller.uploadFile = async (req, res) => {
   }
 };
 
-// Get user profile image from databases
-controller.getUserProfile = async (req, res) => {
-  try {
-    const userId = req.userId;
-    const profileImage = req.body.image;
-    const img = await model.Users.findOne({
-      image: profileImage,
-      attributes: ['userId', 'username', 'fullName', 'email', 'image', 'phoneNumber', 'birthDate', 'gender'],
-      where: {
-        userId: userId,
-      },
-    });
-    res.status(200).json(img);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      message: 'File tidak ditemukan',
-    });
-  }
-};
-
 export default controller;
