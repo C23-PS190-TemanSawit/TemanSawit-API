@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import processFile from '../../middleware/image.js';
 import { format } from 'util';
 import gcs from '../../config/gcs.js';
@@ -5,7 +7,7 @@ import model from '../../models/index.js';
 
 const controller = {};
 const storage = gcs;
-const bucketName = 'testing-bucket-00';
+const bucketName = process.env.GCS_BUCKETNAME;
 const bucket = storage.bucket(bucketName);
 
 controller.uploadFile = async (req, res) => {
