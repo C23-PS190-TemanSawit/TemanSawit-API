@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 
 const app = express();
-const port = 8080;
+const port = 3306;
 
 try {
   await db.authenticate();

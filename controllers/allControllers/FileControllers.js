@@ -5,7 +5,7 @@ import model from '../../models/index.js';
 
 const controller = {};
 const storage = gcs;
-const bucketName = 'testing-bucket-00';
+const bucketName = 'teman-sawit-tes';
 const bucket = storage.bucket(bucketName);
 
 controller.uploadFile = async (req, res) => {
