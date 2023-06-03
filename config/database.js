@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 
-const db = new Sequelize('temansawit_db', 'root', 'Pass.1234', {
-  host: '34.101.234.229',
+const db = new Sequelize('temansawit_db', 'root', 'Pass1234.', {
+  host: '34.151.127.29',
   dialect: 'mysql',
 });
 
