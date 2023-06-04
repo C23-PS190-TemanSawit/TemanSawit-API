@@ -12,15 +12,18 @@ controller.Login = async (req, res) => {
       },
     });
     const match = await bycrypt.compare(req.body.password, user[0].password);
-    if (!match) return res.status(400).json({ msg: 'Password yang anda masukkan salah' });
+    if (!match) return res.status(400).json({ 
+      status: 'fail', 
+      message: 'Password yang anda masukkan salah' 
+    });
     const userId = user[0].userId;
     const name = user[0].username;
     const email = user[0].email;
     const acccessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '20s',
+      expiresIn: '1h',
     });
     const refreshToken = jwt.sign({ userId, name, email }, process.env.REFRESH_TOKEN_SECRET, {
-      expiresIn: '1d',
+      expiresIn: '1h',
     });
     await model.Users.update(
       { refresh_token: refreshToken },
@@ -36,7 +39,10 @@ controller.Login = async (req, res) => {
     });
     res.json({ acccessToken: acccessToken, refreshToken: refreshToken, userId: userId, name: name, email: email });
   } catch (error) {
-    res.status(404).json({ msg: 'Username tidak ditemukan' });
+    res.status(404).json({ 
+      status: 'fail', 
+      message: 'Username tidak ditemukan' 
+    });
   }
 };
 
@@ -60,7 +66,10 @@ controller.Logout = async (req, res) => {
     }
   );
   res.clearCookie('refreshToken');
-  return res.status(200).json({ msg: 'Logout berhasil' });
+  return res.status(200).json({ 
+    status: 'success', 
+    message: 'Logout berhasil' 
+  });
 };
 
 export default controller;

@@ -39,6 +39,7 @@ controller.uploadFile = async (req, res) => {
         }
       );
       res.status(200).send({
+        status: 'success',
         message: 'File berhasil diupload ' + req.file.originalname,
         url: publicUrl,
       });
@@ -48,10 +49,12 @@ controller.uploadFile = async (req, res) => {
   } catch (err) {
     if (err.code == 'LIMIT_FILE_SIZE') {
       return res.status(500).send({
+        status: 'fail',
         message: 'File tidak dapat lebih besar 5MB!',
       });
     }
     res.status(500).send({
+      status: 'fail',
       message: `Tidak dapat mengupload file: ${req.file.originalname}. ${err}`,
     });
   }

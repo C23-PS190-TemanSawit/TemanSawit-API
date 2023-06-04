@@ -13,9 +13,15 @@ controller.postOutcome = async (req, res) => {
       description: description,
       userId: userId,
     });
-    res.status(200).json({ msg: 'Berhasil menambah transaksi' });
+    res.status(200).json({ 
+      status: 'success', 
+      message: 'Berhasil menambah transaksi' 
+    });
   } catch (error) {
-    res.status(500).json({ msg: 'transaksi tidak ditemukan' });
+    res.status(500).json({ 
+      status: 'fail', 
+      message: 'transaksi tidak ditemukan' 
+    });
   }
 };
 
@@ -36,7 +42,10 @@ controller.getUserOutcome = async (req, res) => {
     res.status(200).json(outcome);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+    res.status(500).json({ 
+      status: 'fail', 
+      message: 'Gagal mendapatkan transaksi' 
+    });
   }
 };
 
@@ -49,12 +58,16 @@ controller.getOutcomeByID = async (req, res) => {
       include: [
         {
           model: model.Users,
+          attributes: ['userId'],
         },
       ],
     });
     res.status(200).json(transaction);
   } catch (error) {
-    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+    res.status(500).json({ 
+      status: 'fail', 
+      message: 'Gagal mendapatkan transaksi' 
+    });
   }
 };
 
@@ -70,7 +83,10 @@ controller.sortOutcomeByTime = async (req, res) => {
     });
     res.status(200).json(transaction);
   } catch (error) {
-    res.status(500).json({ msg: 'Gagal mendapatkan transaksai' });
+    res.status(500).json({ 
+      status: 'fail', 
+      message: 'Gagal mendapatkan transaksi' 
+    });
   }
 };
 
@@ -85,15 +101,27 @@ controller.updateOutcome = async (req, res) => {
       where: { outcomeId: outcomeId, userId: userId },
     });
     if (!existingOutcome) {
-      return res.status(404).json({ msg: 'Transaksi tidak ditemukan' });
+      return res.status(404).json({ 
+        status: 'fail', 
+        message: 'Transaksi tidak ditemukan' 
+      });
     }
     // Cek if one of the fields is empty
     if (!transaction_time) {
-      return res.status(404).json({ msg: 'Mohon tambahkan tanggal transaksi' });
+      return res.status(404).json({ 
+        status: 'fail', 
+        message: 'Mohon tambahkan tanggal transaksi' 
+      });
     } else if (!total_outcome) {
-      return res.status(404).json({ msg: 'Mohon tambahkan berat transaksi' });
+      return res.status(404).json({ 
+        status: 'fail', 
+        message: 'Mohon tambahkan berat transaksi' 
+      });
     } else if (!description) {
-      return res.status(404).json({ msg: 'Mohon tambahkan deskripsi transaksi' });
+      return res.status(404).json({ 
+        status: 'fail', 
+        message: 'Mohon tambahkan deskripsi transaksi' 
+      });
     }
     // Update the existing outcome with new values
     await model.Outcomes.update(
@@ -107,10 +135,16 @@ controller.updateOutcome = async (req, res) => {
       }
     );
 
-    res.status(200).json({ msg: 'Transaksi berhasil diperbarui' });
+    res.status(200).json({ 
+      status: 'success', 
+      message: 'Transaksi berhasil diperbarui' 
+    });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: 'Gagal memperbarui transaksi' });
+    res.status(500).json({ 
+      status: 'fail', 
+      message: 'Gagal memperbarui transaksi' 
+    });
   }
 };
 
@@ -126,7 +160,10 @@ controller.deleteOutcome = async (req, res) => {
     });
     
     if (!existingOutcome) {
-      return res.status(404).json({ msg: 'Transaksi tidak ditemukan' });
+      return res.status(404).json({ 
+        status: 'fail', 
+        message: 'Transaksi tidak ditemukan' 
+      });
     }
     
     // Delete the outcome
@@ -134,10 +171,16 @@ controller.deleteOutcome = async (req, res) => {
       where: { outcomeId: outcomeId },
     });
     
-    res.status(200).json({ msg: 'Transaksi berhasil dihapus' });
+    res.status(200).json({ 
+      status: 'success', 
+      message: 'Transaksi berhasil dihapus' 
+    });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ msg: 'Gagal menghapus transaksi' });
+    res.status(500).json({ 
+      status: 'fail', 
+      message: 'Gagal menghapus transaksi' 
+    });
   }
 };
 
