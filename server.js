@@ -1,4 +1,3 @@
-console.log('Hallo ini udah jalan bro')
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
@@ -7,7 +6,6 @@ import cors from 'cors';
 import router from './routes/routes.js';
 import cookieParser from 'cookie-parser';
 
-console.log(process.env.DB_NAME);
 const app = express();
 const port = 3306;
 
