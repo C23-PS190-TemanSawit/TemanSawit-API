@@ -15,7 +15,7 @@ try {
   await db.authenticate();
   console.log('db connected');
   // ### Command to create db
-  // await db.sync({ force: true });
+  //await db.sync({ force: true });
 } catch (error) {
   console.log(error);
 }
