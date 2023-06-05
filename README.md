@@ -1,6 +1,14 @@
-# TemanSawit-API
+# Cloud Computing Path
 
-TemanSawit-API is a RESTful API that provides various functions to manage and process data related to oil palm plantations. This API is deployed on Google Cloud Platform (GCP) using [Google Cloud Run](https//cloud.google.com/run), [Google Cloud Build](https//cloud.google.com/build), [Google Cloud Storage](https//cloud.google.com/storage), and [Google Compute Engine](https://cloud.google.com/compute). 
+Creating RESTful APIs and deploying to Google Cloud Platform using [Google Cloud Run](https//cloud.google.com/run) and [Google Cloud Build](https//cloud.google.com/build) for communication between Machine Learning Model and Mobile Development. Creating database in [Google Compute Engine](https://cloud.google.com/compute) and using [Google Cloud Storage](https//cloud.google.com/storage) to store images.
+
+The CC division consists of:
+- Muh. Falach Achsan Yusuf (C300DSX2627)
+- Rischa Nurul Hidayati (C177DSY2224)
+
+## TemanSawit-API
+
+TemanSawit-API is a RESTful API that provides various functions to manage and process data related to oil palm plantations. This API is deployed on Google Cloud Platform (GCP). In making the RESTful APIs we use [NodeJS](https//nodejs.org/en/) with some other dependencies which are [Sequelize](https//sequelize.org), [ExpressJS](https//expressjs.com), JSON Web Token [JWT](https://jwt.io/), and [CORS](https//enable-cors.org/index.html).
 
 The API consists of four main endpoints that provide different functions:
 1. Authentication/Authorization API
