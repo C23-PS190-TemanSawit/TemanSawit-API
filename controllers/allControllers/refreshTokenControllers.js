@@ -20,11 +20,16 @@ controller.refreshToken = async (req, res) => {
       const accessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: '15s',
       });
-      res.json({ accessToken });
+      res.json({
+        status: 'success',
+        accessToken,
+      });
     });
   } catch (error) {
-    res.json({ error: error });
-    console.error(error);
+    res.json({
+      status: 'fail',
+      message: 'Gagal mendapatkan token',
+    });
   }
 };
 

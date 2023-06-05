@@ -10,8 +10,10 @@ controller.getUsers = async (req, res) => {
     });
     res.json(users);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ msg: 'Gagal mendapatkan user' });
+    res.status(500).json({
+      status: 'fail',
+      message: 'Gagal mendapatkan user',
+    });
   }
 };
 
@@ -25,10 +27,20 @@ controller.updatePassword = async (req, res) => {
     });
     // Cek current password is match
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.status(400).json({ msg: 'Password yang anda masukkan salah' });
+    if (!match) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Password yang anda masukkan salah',
+      });
+    }
 
     // Cek updated password match with confirm password
-    if (newPassword !== confPassword) return res.status(400).json({ msg: 'Password tidak cocok, silahkan masukkan kembali password anda' });
+    if (newPassword !== confPassword) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Password tidak cocok, silahkan masukkan kembali password anda',
+      });
+    }
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(newPassword, salt);
 
@@ -41,10 +53,16 @@ controller.updatePassword = async (req, res) => {
       }
     );
     await user.save();
-    return res.status(200).json({ msg: 'Update password berhasil' });
+    return res.status(200).json({
+      status: 'success',
+      message: 'Update password berhasil',
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ msg: 'Terjadi kesalahan saat update password' });
+    res.status(500).json({
+      status: 'fail',
+      message: 'Terjadi kesalahan saat update password',
+    });
   }
 };
 
@@ -70,10 +88,16 @@ controller.updateProfile = async (req, res) => {
       }
     );
     await user.save();
-    return res.status(200).json({ msg: 'Update profile berhasil' });
+    return res.status(200).json({
+      status: 'success',
+      message: 'Update profile berhasil',
+    });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ msg: 'Terjadi kesalahan saat update profile' });
+    res.status(500).json({
+      status: 'fail',
+      message: 'Terjadi kesalahan saat update profile',
+    });
   }
 };
 
@@ -85,10 +109,19 @@ controller.forgotPassword = async (req, res) => {
     },
   });
   // Check if username exists
-  if (!username) return res.status(401).json({ message: 'Username tidak ditemukan' });
+  if (!username) {
+    return res.status(401).json({
+      status: 'fail',
+      message: 'Username tidak ditemukan',
+    });
+  }
   try {
     // Cek updated password match with confirm password
-    if (newPassword !== confPassword) return res.status(400).json({ msg: 'Password tidak cocok, silahkan masukkan kembali password anda' });
+    if (newPassword !== confPassword)
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Password tidak cocok, silahkan masukkan kembali password anda',
+      });
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(newPassword, salt);
     await model.Users.update(
@@ -100,9 +133,15 @@ controller.forgotPassword = async (req, res) => {
       }
     );
     await user.save();
-    return res.status(200).json({ msg: 'Update password berhasil' });
+    return res.status(200).json({
+      status: 'success',
+      message: 'Update password berhasil',
+    });
   } catch (error) {
-    res.status(500).json({ msg: 'Terjadi kesalahan saat update password' });
+    res.status(500).json({
+      status: 'fail',
+      message: 'Terjadi kesalahan saat update password',
+    });
     console.log(error);
   }
 };
@@ -123,6 +162,7 @@ controller.getUserProfile = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json({
+      status: 'fail',
       message: 'File tidak ditemukan',
     });
   }
