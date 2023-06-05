@@ -6,6 +6,7 @@ The API consists of four main endpoints that provide different functions:
 1. Authentication/Authorization API
 2. Income API
 3. Outcome API
+4. [Ripeness Model API](https://github.com/TemanSawit/TemanSawit-ml-api)
 
 Overall, TemanSawit-API provides a comprehensive and efficient solution for managing and processing data related to oil palm plantations.
 
