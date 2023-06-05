@@ -1,40 +1,23 @@
 # TemanSawit-API
 
-This API contains an API for the recording system in the TemanSawit application. It consists of three parts, namely Authentication and Authorization API, Income API, and Outcome API.
+TemanSawit-API is a RESTful API that provides various functions to manage and process data related to oil palm plantations. This API is deployed on Google Cloud Platform (GCP) using [Google Cloud Run](https//cloud.google.com/run), [Google Cloud Build](https//cloud.google.com/build), [Google Cloud Storage](https//cloud.google.com/storage), and [Google Compute Engine](https://cloud.google.com/compute). 
 
-## Run Locally
+The API consists of four main endpoints that provide different functions:
+1. Authentication/Authorization API
+2. Income API
+3. Outcome API
+4. Ripeness Model API
 
-Clone the project
+Overall, TemanSawit-API provides a comprehensive and efficient solution for managing and processing data related to oil palm plantations.
 
+## Authentication/Authorization API
+
+These endpoints allow users to authenticate themselves and obtain authorization to access other endpoints. The API implements token-based authentication using JSON Web Tokens (JWT) to ensure secure communication between the client and server.
+
+Method GET for verify
 ```bash
-  git clone https://github.com/TemanSawit/TemanSawit-API.git
+GET http://localhost:8080/api/users
 ```
-
-Install dependencies
-
-```bash
-  npm install nodemon
-```
-```bash
-  npm install express
-```
-```bash
-  npm install mysql2 sequelize cors
-```
-```bash
-  npm install jsonwebtoken bcrypt cookie-parser dotenv
-```
-
-Start the server (before that activate XAMPP in your local)
-
-```bash
-  npm start
-```
-## Testing API in POSTMAN
-
-To run tests, run the following command
-
-* Authentication and Authorization
 Method Post for registration
 ```bash
 POST http://localhost:8080/api/users
@@ -59,10 +42,6 @@ On body request, copy this code for example :
     "username" : "JohnDoe",
     "password": "pass1234"
   }
-```
-Method GET for verify
-```bash
-GET http://localhost:8080/api/users
 ```
 Method GET for refreshtoken
 ```bash
