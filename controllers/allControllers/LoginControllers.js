@@ -20,11 +20,11 @@ controller.Login = async (req, res) => {
     const userId = user[0].userId;
     const name = user[0].username;
     const email = user[0].email;
-    const acccessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
+    const accessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '1h',
     });
     const refreshToken = jwt.sign({ userId, name, email }, process.env.REFRESH_TOKEN_SECRET, {
-      expiresIn: '1h',
+      expiresIn: '1d',
     });
     await model.Users.update(
       { refresh_token: refreshToken },
@@ -38,7 +38,7 @@ controller.Login = async (req, res) => {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.json({ acccessToken: acccessToken, refreshToken: refreshToken, userId: userId, name: name, email: email });
+    res.json({ accessToken: accessToken, userId: userId, name: name, email: email });
   } catch (error) {
     res.status(404).json({
       status: 'fail',

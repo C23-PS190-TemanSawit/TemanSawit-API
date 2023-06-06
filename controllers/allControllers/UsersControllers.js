@@ -163,7 +163,7 @@ controller.getUserProfile = async (req, res) => {
     console.log(err);
     res.status(500).json({
       status: 'fail',
-      message: 'File tidak ditemukan',
+      message: 'User tidak ditemukan',
     });
   }
 };
