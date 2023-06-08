@@ -4,7 +4,7 @@ const controller = {};
 
 controller.refreshToken = async (req, res) => {
   try {
-    const refreshToken = req.cookies.refreshToken;
+    const refreshToken = req.headers['authorization'];
     if (!refreshToken) return res.sendStatus(401);
     const user = await model.Users.findAll({
       where: {

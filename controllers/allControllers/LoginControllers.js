@@ -38,7 +38,7 @@ controller.Login = async (req, res) => {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.json({ accessToken: accessToken, userId: userId, name: name, email: email });
+    res.json({ accessToken: accessToken, refreshToken: refreshToken, userId: userId, name: name, email: email });
   } catch (error) {
     res.status(404).json({
       status: 'fail',
