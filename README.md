@@ -38,12 +38,28 @@ tbc
 GET {{Host}}/api/users
 ```
 
+**Response:**
+```JSON
+    {
+        "userId": 1,
+        "username": "admin",
+        "email": "example@tes.com"
+    }
+```
+
 This method is to get all registered users.
 
 - **Show Refresh Token**
 
 ```bash
 GET {{Host}}/api/token
+```
+
+**Response:**
+```JSON
+{
+    "accessToken": "accessToken"
+}
 ```
 
 This method is to get a refresh token from the admin which the user uses to log back in.
@@ -62,6 +78,20 @@ GET {{Host}}/api/profile
   | Key           | Value                                         |
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
+
+**Response:**
+```JSON
+{
+    "userId": 1,
+    "username": "admin",
+    "fullName": null,
+    "email": "example@tes.com",
+    "image": null,
+    "phoneNumber": null,
+    "birthDate": null,
+    "gender": null
+}
+```
 
 This method is to get the user profile.
 
@@ -89,6 +119,14 @@ On body request, copy this code for example :
   }
 ```
 
+**Response:**
+```JSON
+{
+    "status": "success",
+    "message": "Registrasi berhasil"
+}
+```
+
 This method is for registers.
 
 How to use :
@@ -107,6 +145,17 @@ On body request, copy this code for example :
     "username" : "admin",
     "password" : "123456"
   }
+```
+
+ **Response:**
+```JSON
+{
+    "accessToken": "accessToken",
+    "refreshToken": "refreshToken",
+    "userId": 1,
+    "name": "admin",
+    "email": "example@tes.com"
+}
 ```
 
 This method is for login.
@@ -131,6 +180,15 @@ POST {{Host}}/api/upload
   | File            | Value                                                                                                        |
   | --------------- | ------------------------------------------------------------------------------------------------------------ |
   | Download sample | https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg |
+
+**Response:**
+```JSON
+{
+    "status": "success",
+    "message": "File berhasil diupload pexels-pixabay-220453.jpg",
+    "url": "publicURL"
+}
+```
 
 This method is for adding a user profile picture and will be stored in the GCS Bucket.
 
@@ -163,6 +221,14 @@ On body request, copy this code for example :
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+**Response:**
+```JSON
+{
+    "status": "success",
+    "message": "Update password berhasil"
+}
+```
+
 This method is for updating the password by the user.
 
 How to use :
@@ -182,6 +248,14 @@ On body request, copy this code for example :
     "newPassword":"1234567",
     "confPassword":"1234567"
   }
+```
+
+**Response:**
+```JSON
+{
+    "status": "success",
+    "message": "Update password berhasil"
+}
 ```
 
 This method is for updating passwords due to forgetting.
@@ -212,6 +286,14 @@ On body request, copy this code for example :
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+**Response:**
+```JSON
+{
+    "status": "success",
+    "message": "Update profile berhasil"
+}
+```
+
 This method is to update the user profile.
 
 How to use :
@@ -225,6 +307,14 @@ Enter the request above and complete the request body as in the example then sen
 
 ```bash
 DELETE {{Host}}/api/logout
+```
+
+**Response:**
+```JSON
+{
+    "status": "success",
+    "message": "Logout berhasil"
+}
 ```
 
 This method is to log out of the user account.
@@ -267,6 +357,14 @@ On body request, copy this code for example :
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+**Response:**
+```JSON
+{
+    "status": "success",
+    "message": "Berhasil menambah transaksi"
+}
+```
+
 This method is to add income to the record.
 
 How to use :
@@ -288,6 +386,36 @@ GET {{Host}}/api/income
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+**Response:**
+```JSON
+[
+    {
+        "incomeId": 1,
+        "transaction_time": "2023-04-01",
+        "price": 150000,
+        "total_weight": 10,
+        "description": "Admin example",
+        "createdAt": "2023-06-09T11:39:14.000Z",
+        "updatedAt": "2023-06-09T11:39:14.000Z",
+        "userId": 1,
+        "user": {
+            "userId": 1,
+            "username": "admin",
+            "email": "example@tes.com",
+            "fullName": null,
+            "password": "hashPassword",
+            "refresh_token": "refreshToken",
+            "image": "publicURL",
+            "phoneNumber": null,
+            "birthDate": null,
+            "gender": null,
+            "createdAt": "2023-06-08T13:53:51.000Z",
+            "updatedAt": "2023-06-09T11:38:36.000Z"
+        }
+    }
+]
+```
+
 This method is to get all the income that the user has.
 
 How to use :
@@ -305,6 +433,25 @@ GET {{Host}}/api/income/:incomeId
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+**Response:**
+```JSON
+[
+    {
+        "incomeId": 1,
+        "transaction_time": "2023-05-02",
+        "price": 54877,
+        "total_weight": 10,
+        "description": "Jual sawit ke pa akari",
+        "createdAt": "2023-06-06T12:26:59.000Z",
+        "updatedAt": "2023-06-06T12:26:59.000Z",
+        "userId": 1,
+        "user": {
+            "userId": 1
+        }
+    }
+]
+```
+
 This method is to get all income based on id.
 
 How to use :
@@ -321,6 +468,20 @@ GET {{Host}}/api/income/sort
   | Key           | Value                                         |
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
+
+**Response:**
+```JSON
+{
+    "incomeId": 1,
+    "transaction_time": "2023-04-01",
+    "price": 150000,
+    "total_weight": 10,
+    "description": "Admin example",
+    "createdAt": "2023-06-09T11:39:14.000Z",
+    "updatedAt": "2023-06-09T11:39:14.000Z",
+    "userId": 1
+}
+```
 
 This method is to sort income based on the time it was made.
 
@@ -354,6 +515,14 @@ On body request, copy this code for example :
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+**Response:**
+```JSON
+{
+    "status": "success",
+    "message": "Transaksi berhasil diperbarui"
+}
+```
+
 This method is for updating transactions that have been made using incomeId.
 
 How to use :
@@ -374,6 +543,14 @@ DELETE {{Host}}/api/income/incomeId
   | Key           | Value                                         |
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
+
+**Response:**
+```JSON
+{
+    "status": "success",
+    "message": "Transaksi berhasil dihapus"
+}
+```
 
 This method is to delete income transactions.
 
