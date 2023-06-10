@@ -34,10 +34,6 @@ controller.Login = async (req, res) => {
         },
       }
     );
-    res.cookie('refreshToken', refreshToken, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
-    });
     res.json({ accessToken: accessToken, refreshToken: refreshToken, userId: userId, name: name, email: email });
   } catch (error) {
     res.status(404).json({
@@ -49,24 +45,16 @@ controller.Login = async (req, res) => {
 
 // Logout function
 controller.Logout = async (req, res) => {
-  const refreshToken = req.cookies.refreshToken;
-  if (!refreshToken) return res.sendStatus(204);
-  const user = await model.Users.findAll({
-    where: {
-      refresh_token: refreshToken,
-    },
-  });
-  if (!user[0]) return res.sendStatus(204);
-  const userId = user[0].userId;
+  const refreshToken = req.headers['authorization'];
+  if (!refreshToken) return res.status(401).json({ error: 'Unauthorized' });
   await model.Users.update(
     { refresh_token: null },
     {
       where: {
-        userId: userId,
+        refresh_token: refreshToken,
       },
     }
   );
-  res.clearCookie('refreshToken');
   return res.status(200).json({
     status: 'success',
     message: 'Logout berhasil',

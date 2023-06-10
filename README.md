@@ -320,7 +320,7 @@ DELETE {{Host}}/api/logout
 This method is to log out of the user account.
 
 How to use :
-Enter the request above then send. If successful it will display a successful message. This function is used when the user wants to leave his account.
+Send a refresh token to headers ('authorization') and then click send request. If successful it will display a successful message. This function is used when the user wants to leave his account.
 
 ## 2. User Income API
 
