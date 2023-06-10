@@ -27,7 +27,7 @@ Overall, TemanSawit-API provides a comprehensive and efficient solution for mana
 These endpoints allow users to authenticate themselves and obtain authorization to access other endpoints. The API implements token-based authentication using JSON Web Tokens (JWT) to ensure secure communication between the client and server.
 
 **Base URL:**
-tbc
+https://temansawit-api-sqmlxtcfma-ts.a.run.app
 
 **Method:**
 
