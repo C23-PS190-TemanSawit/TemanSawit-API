@@ -10,6 +10,7 @@ The CC division consists of:
 ## TemanSawit-API
 
 <!-- Test -->
+
 TemanSawit-API is a RESTful API that provides various functions to manage and process data related to oil palm plantations. This API is deployed on Google Cloud Platform (GCP). In making the RESTful APIs we use [NodeJS](https//nodejs.org/en/) with some other dependencies which are [Sequelize](https//sequelize.org), [ExpressJS](https//expressjs.com), JSON Web Token [JWT](https://jwt.io/), and [CORS](https//enable-cors.org/index.html).
 
 The API consists of four main endpoints that provide different functions:
@@ -39,6 +40,7 @@ GET {{Host}}/api/users
 ```
 
 **Response:**
+
 ```JSON
     {
         "userId": 1,
@@ -56,16 +58,23 @@ GET {{Host}}/api/token
 ```
 
 **Response:**
+
 ```JSON
 {
     "accessToken": "accessToken"
 }
 ```
 
+- **Request Header:**
+
+  | Key           | Value                                                 |
+  | ------------- | ----------------------------------------------------- |
+  | Authorization | "Use refresh_token For Authtentication/Authorization" |
+
 This method is to get a refresh token from the admin which the user uses to log back in.
 
 How to use :
-Enter the request above then send. If successful, the response displayed is a refresh token which can be used to update the access token when the user wants to log in.
+Send a refresh token to headers ('authorization') and then click send request. If successful, the response displayed is a refresh token which can be used to update the access token when the user wants to log in.
 
 - **Show User Profile**
 
@@ -80,6 +89,7 @@ GET {{Host}}/api/profile
   | Authorization | "Use Token For Authtentication/Authorization" |
 
 **Response:**
+
 ```JSON
 {
     "userId": 1,
@@ -120,6 +130,7 @@ On body request, copy this code for example :
 ```
 
 **Response:**
+
 ```JSON
 {
     "status": "success",
@@ -147,7 +158,8 @@ On body request, copy this code for example :
   }
 ```
 
- **Response:**
+**Response:**
+
 ```JSON
 {
     "accessToken": "accessToken",
@@ -182,6 +194,7 @@ POST {{Host}}/api/upload
   | Download sample | https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg |
 
 **Response:**
+
 ```JSON
 {
     "status": "success",
@@ -222,6 +235,7 @@ On body request, copy this code for example :
   | Authorization | "Use Token For Authtentication/Authorization" |
 
 **Response:**
+
 ```JSON
 {
     "status": "success",
@@ -251,6 +265,7 @@ On body request, copy this code for example :
 ```
 
 **Response:**
+
 ```JSON
 {
     "status": "success",
@@ -287,6 +302,7 @@ On body request, copy this code for example :
   | Authorization | "Use Token For Authtentication/Authorization" |
 
 **Response:**
+
 ```JSON
 {
     "status": "success",
@@ -310,6 +326,7 @@ DELETE {{Host}}/api/logout
 ```
 
 **Response:**
+
 ```JSON
 {
     "status": "success",
@@ -317,7 +334,13 @@ DELETE {{Host}}/api/logout
 }
 ```
 
-This method is to log out of the user account.
+- **Request Header:**
+
+  | Key           | Value                                                 |
+  | ------------- | ----------------------------------------------------- |
+  | Authorization | "Use refresh_token For Authtentication/Authorization" |
+
+  This method is to log out of the user account.
 
 How to use :
 Send a refresh token to headers ('authorization') and then click send request. If successful it will display a successful message. This function is used when the user wants to leave his account.
@@ -358,6 +381,7 @@ On body request, copy this code for example :
   | Authorization | "Use Token For Authtentication/Authorization" |
 
 **Response:**
+
 ```JSON
 {
     "status": "success",
@@ -387,6 +411,7 @@ GET {{Host}}/api/income
   | Authorization | "Use Token For Authtentication/Authorization" |
 
 **Response:**
+
 ```JSON
 [
     {
@@ -434,6 +459,7 @@ GET {{Host}}/api/income/:incomeId
   | Authorization | "Use Token For Authtentication/Authorization" |
 
 **Response:**
+
 ```JSON
 [
     {
@@ -470,6 +496,7 @@ GET {{Host}}/api/income/sort
   | Authorization | "Use Token For Authtentication/Authorization" |
 
 **Response:**
+
 ```JSON
 {
     "incomeId": 1,
@@ -516,6 +543,7 @@ On body request, copy this code for example :
   | Authorization | "Use Token For Authtentication/Authorization" |
 
 **Response:**
+
 ```JSON
 {
     "status": "success",
@@ -545,6 +573,7 @@ DELETE {{Host}}/api/income/incomeId
   | Authorization | "Use Token For Authtentication/Authorization" |
 
 **Response:**
+
 ```JSON
 {
     "status": "success",
