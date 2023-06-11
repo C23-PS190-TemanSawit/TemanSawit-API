@@ -356,7 +356,7 @@ tbc
 
 > POST
 
-- **Show list All Users**
+- **Create Income**
 
 ```bash
 POST {{Host}}/api/income
@@ -420,8 +420,8 @@ GET {{Host}}/api/income
         "price": 150000,
         "total_weight": 10,
         "description": "Admin example",
-        "createdAt": "2023-06-09T11:39:14.000Z",
-        "updatedAt": "2023-06-09T11:39:14.000Z",
+        "createdAt": "datetime",
+        "updatedAt": "datetime",
         "userId": 1,
         "user": {
             "userId": 1,
@@ -434,8 +434,8 @@ GET {{Host}}/api/income
             "phoneNumber": null,
             "birthDate": null,
             "gender": null,
-            "createdAt": "2023-06-08T13:53:51.000Z",
-            "updatedAt": "2023-06-09T11:38:36.000Z"
+            "createdAt": "datetime",
+            "updatedAt": "datetime"
         }
     }
 ]
@@ -464,12 +464,12 @@ GET {{Host}}/api/income/:incomeId
 [
     {
         "incomeId": 1,
-        "transaction_time": "2023-05-02",
-        "price": 54877,
+        "transaction_time": "2023-04-01",
+        "price": 150000,
         "total_weight": 10,
-        "description": "Jual sawit ke pa akari",
-        "createdAt": "2023-06-06T12:26:59.000Z",
-        "updatedAt": "2023-06-06T12:26:59.000Z",
+        "description": "Admin Example",
+        "createdAt": "datetime",
+        "updatedAt": "datetime",
         "userId": 1,
         "user": {
             "userId": 1
@@ -504,8 +504,8 @@ GET {{Host}}/api/income/sort
     "price": 150000,
     "total_weight": 10,
     "description": "Admin example",
-    "createdAt": "2023-06-09T11:39:14.000Z",
-    "updatedAt": "2023-06-09T11:39:14.000Z",
+    "createdAt": "datetime",
+    "updatedAt": "datetime",
     "userId": 1
 }
 ```
@@ -619,6 +619,15 @@ On body request, copy this code for example :
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+**Response:**
+
+```JSON
+{
+    "status": "success",
+    "message": "Berhasil menambah transaksi"
+}
+```
+
 This method is to add outcome to the record.
 
 How to use :
@@ -640,6 +649,34 @@ GET {{Host}}/api/outcome
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+```JSON
+[
+    {
+        "outcomeId": 1,
+        "transaction_time": "2023-04-01",
+        "total_outcome": 50,
+        "description": "Admin example",
+        "createdAt": "datetime",
+        "updatedAt": "datetime",
+        "userId": 1,
+        "user": {
+            "userId": 1,
+            "username": "admin",
+            "email": "example@tes.com",
+            "fullName": null,
+            "password": "hashPassword",
+            "refresh_token": "refreshToken",
+            "image": "publicURL",
+            "phoneNumber": null,
+            "birthDate": null,
+            "gender": null,
+            "createdAt": "datetime",
+            "updatedAt": "datetime"
+        }
+    }
+]
+```
+
 This method is to get all the outcome that the user has.
 
 How to use :
@@ -657,6 +694,25 @@ GET {{Host}}/api/outcome/:outcomeId
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+**Response:**
+
+```JSON
+[
+    {
+        "outcomeId": 1,
+        "transaction_time": "2023-04-01",
+        "total_outcome": 50,
+        "description": "Admin Example",
+        "createdAt": "datetime",
+        "updatedAt": "datetime",
+        "userId": 1,
+        "user": {
+            "userId": 1
+        }
+    }
+]
+```
+
 This method is to get all outcome based on id.
 
 How to use :
@@ -673,6 +729,20 @@ GET {{Host}}/api/outcome/sort
   | Key           | Value                                         |
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
+
+**Response:**
+
+```JSON
+{
+    "outcomeId": 1,
+    "transaction_time": "2023-04-01",
+    "total_weight": 50,
+    "description": "Admin example",
+    "createdAt": "datetime",
+    "updatedAt": "datetime",
+    "userId": 1
+}
+```
 
 This method is to sort outcome based on the time it was made.
 
@@ -705,6 +775,15 @@ On body request, copy this code for example :
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
 
+**Response:**
+
+```JSON
+{
+    "status": "success",
+    "message": "Transaksi berhasil diperbarui"
+}
+```
+
 This method is for updating transactions that have been made using outcomeId.
 
 How to use :
@@ -725,6 +804,15 @@ DELETE {{Host}}/api/outcome/outcomeId
   | Key           | Value                                         |
   | ------------- | --------------------------------------------- |
   | Authorization | "Use Token For Authtentication/Authorization" |
+
+**Response:**
+
+```JSON
+{
+    "status": "success",
+    "message": "Transaksi berhasil dihapus"
+}
+```
 
 This method is to delete outcome transactions.
 
