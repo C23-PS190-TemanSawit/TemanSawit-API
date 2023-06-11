@@ -21,7 +21,7 @@ controller.Login = async (req, res) => {
     const name = user[0].username;
     const email = user[0].email;
     const accessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '1m',
+      expiresIn: '24h',
     });
     const refreshToken = jwt.sign({ userId, name, email }, process.env.REFRESH_TOKEN_SECRET, {
       expiresIn: '24h',
