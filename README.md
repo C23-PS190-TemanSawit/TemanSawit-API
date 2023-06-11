@@ -57,6 +57,12 @@ This method is to get all registered users.
 GET {{Host}}/api/token
 ```
 
+- **Request Header:**
+
+  | Key           | Value                                                 |
+  | ------------- | ----------------------------------------------------- |
+  | Authorization | "Use refresh_token For Authtentication/Authorization" |
+
 **Response:**
 
 ```JSON
@@ -65,15 +71,9 @@ GET {{Host}}/api/token
 }
 ```
 
-- **Request Header:**
-
-  | Key           | Value                                                 |
-  | ------------- | ----------------------------------------------------- |
-  | Authorization | "Use refresh_token For Authtentication/Authorization" |
-
 This method is to get a refresh token from the admin which the user uses to log back in.
 
-How to use :
+How to use : 
 Send a refresh token to headers ('authorization') and then click send request. If successful, the response displayed is a refresh token which can be used to update the access token when the user wants to log in.
 
 - **Show User Profile**
@@ -340,7 +340,7 @@ DELETE {{Host}}/api/logout
   | ------------- | ----------------------------------------------------- |
   | Authorization | "Use refresh_token For Authtentication/Authorization" |
 
-  This method is to log out of the user account.
+This method is to log out of the user account.
 
 How to use :
 Send a refresh token to headers ('authorization') and then click send request. If successful it will display a successful message. This function is used when the user wants to leave his account.
