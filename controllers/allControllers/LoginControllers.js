@@ -5,12 +5,25 @@ const controller = {};
 
 // Login Functions
 controller.Login = async (req, res) => {
+  const username = req.body.username;
+  if (!username) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Mohon masukkan username anda',
+    });
+  }
   try {
     const user = await model.Users.findAll({
       where: {
-        username: req.body.username,
+        username: username,
       },
     });
+    if (!user || user.length === 0) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'Username tidak ditemukan',
+      });
+    }
     const match = await bycrypt.compare(req.body.password, user[0].password);
     if (!match)
       return res.status(400).json({
@@ -36,9 +49,9 @@ controller.Login = async (req, res) => {
     );
     res.json({ accessToken: accessToken, refreshToken: refreshToken, userId: userId, name: name, email: email });
   } catch (error) {
-    res.status(404).json({
-      status: 'fail',
-      message: 'Username tidak ditemukan',
+    res.status(500).json({
+      status: 'error',
+      message: 'Terjadi kesalahan saat memproses permintaan Anda',
     });
   }
 };
