@@ -27,7 +27,7 @@ Overall, TemanSawit-API provides a comprehensive and efficient solution for mana
 These endpoints allow users to authenticate themselves and obtain authorization to access other endpoints. The API implements token-based authentication using JSON Web Tokens (JWT) to ensure secure communication between the client and server.
 
 **Base URL:**
-https://temansawit-api-sqmlxtcfma-ts.a.run.app
+><https://temansawit-api-sqmlxtcfma-ts.a.run.app>
 
 **Method:**
 
@@ -350,7 +350,7 @@ Send a refresh token to headers ('authorization') and then click send request. I
 This endpoint provides functions to manage revenue data related to oil palm plantations. Users can retrieve, create, update and delete revenue data using this endpoint. The API stores revenue data in a [Compute Engine](https://cloud.google.com/compute) instance for data processing and cutting expenses.
 
 **Base URL:**
-tbc
+><https://temansawit-api-sqmlxtcfma-ts.a.run.app>
 
 **Method:**
 
@@ -591,7 +591,7 @@ Enter the request above then send. If successful it will display a successful me
 This endpoint provides functionalities for managing outcome data related to oil palm plantation. Users can retrieve, create, update, and delete outcome data using this endpoint. The API stores the outcome data in a [Compute Engine](https://cloud.google.com/compute) instance for data processing and cutting expenses.
 
 **Base URL:**
-tbc
+><https://temansawit-api-sqmlxtcfma-ts.a.run.app>
 
 **Method:**
 
