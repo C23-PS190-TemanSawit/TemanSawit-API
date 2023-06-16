@@ -28,10 +28,20 @@ Overall, TemanSawit-API provides a comprehensive and efficient solution for mana
 ```bash
 git clone https://github.com/TemanSawit/TemanSawit-API.git
 ```
+
 2. Install all dependecies in package.json use npm i
 ```bash
-npm i <all dependecies>
+npm nodemon
 ```
+
+```bash
+npm i express sequelize mysql2 cors multer dotenv bcrypt jsonwebtoken cookie-parser passport-google-oauth2
+```
+
+```bash
+npm @google-cloud/storage
+```
+
 3. Run in local with command
 ```bash
 npm start
