@@ -22,6 +22,21 @@ The API consists of four main endpoints that provide different functions:
 
 Overall, TemanSawit-API provides a comprehensive and efficient solution for managing and processing data related to oil palm plantations.
 
+## How To Use
+
+1. Clone this repository
+```bash
+git clone https://github.com/TemanSawit/TemanSawit-API.git
+```
+2. Install all dependecies in package.json use npm i
+```bash
+npm i <all dependecies>
+```
+3. Run in local with command
+```bash
+npm start
+```
+
 ## 1. Authentication/Authorization API
 
 These endpoints allow users to authenticate themselves and obtain authorization to access other endpoints. The API implements token-based authentication using JSON Web Tokens (JWT) to ensure secure communication between the client and server.
