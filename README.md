@@ -26,7 +26,7 @@ Overall, TemanSawit-API provides a comprehensive and efficient solution for mana
 
 1. Clone this repository
 ```bash
-git clone https://github.com/TemanSawit/TemanSawit-API.git
+git clone https://github.com/C23-PS190-TemanSawit/TemanSawit-API.git
 ```
 
 2. Install all dependecies in package.json use npm i
